@@ -8,7 +8,22 @@ dist-ssr/
 # Environment variables & secrets (NEVER commit)
 .env
 .env.local
+.env.*
 .env.*.local
+*.env
+*.env.*
+
+# Allow tracking example environment configuration template (placeholders only)
+!.env.example
+
+# Credentials, certificates and secret keys
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.pkcs12
+*.p12
 
 # Logs
 npm-debug.log*
@@ -28,4 +43,3 @@ build.log
 *.njsproj
 *.sln
 *.sw?
-
