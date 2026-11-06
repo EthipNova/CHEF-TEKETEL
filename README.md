@@ -1,120 +1,79 @@
-# React + Vite + shadcn/ui Starter Template
+# CHEF-TEKETEL
 
-A modern React starter template built with Vite, TypeScript, Tailwind CSS, and shadcn/ui components.
-
-## 🚀 Features
-
-- ⚡️ **Vite** - Fast build tool and development server
-- ⚛️ **React 18** - Latest React with hooks support
-- 🎯 **TypeScript** - Type safety and better developer experience
-- 🎨 **Tailwind CSS** - Utility-first CSS framework
-- 🧩 **shadcn/ui** - Beautifully designed components built with Radix UI
-- 📦 **Path Mapping** - Clean imports with `@/` prefix
-
-## 📦 Included shadcn/ui Components
-
-- Button
-- Card
-- Input
-- Label
-- Badge
-- Dialog
-- And more...
-
-## 🛠️ Getting Started
-
-1. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-2. **Start development server**
-
-   ```bash
-   npm run dev
-   ```
-
-3. **Build for production**
-
-   ```bash
-   npm run build
-   ```
-
-4. **Preview production build**
-   ```bash
-   npm run preview
-   ```
-
-## 📁 Project Structure
-
-```
-src/
-├── components/
-│   └── ui/              # shadcn/ui components
-├── lib/
-│   └── utils.ts         # Utility functions
-├── App.tsx              # Main application component
-├── index.css            # Global styles with Tailwind
-└── main.tsx             # Application entry point
-```
-
-## 🎨 Customization
-
-### Adding New shadcn/ui Components
-
-This template is pre-configured with shadcn/ui. You can add more components by creating them in the `src/components/ui/` directory.
-
-### Tailwind Configuration
-
-The Tailwind configuration is set up with shadcn/ui color variables. You can customize colors and other design tokens in:
-
-- `tailwind.config.js` - Tailwind configuration
-- `src/index.css` - CSS custom properties for themes
-
-### TypeScript Configuration
-
-Path mapping is configured for clean imports:
-
-```typescript
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-```
-
-## 🌗 Dark Mode
-
-The template includes dark mode support through Tailwind's `dark:` classes and CSS custom properties.
-
-## 📚 Learn More
-
-- [Vite Documentation](https://vitejs.dev/)
-- [React Documentation](https://react.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [shadcn/ui](https://ui.shadcn.com/)
-- [Radix UI](https://www.radix-ui.com/)
-
-## 🤝 Contributing
-
-Feel free to submit issues and enhancement requests!
-
-**⚡ Powered by [Dala](https://dala.gebeya.com)** - The AI-powered web development platform that helps you build full-stack applications faster.
+**CHEF TEKETEL** is an intelligent multilingual food ordering, menu management, and cafe administration platform built with React, TypeScript, Tailwind CSS, and Supabase.
 
 ---
 
-## 🤖 What is Dala?
+## 🍽️ Features
 
-**[Gebeya Dala](https://dala.gebeya.com)** is an intelligent web development platform that accelerates your React development workflow. Build, preview, and deploy web applications, and instant development environments.
-
-🔗 **Try Dala:** [dala.gebeya.com](https://dala.gebeya.com)
-
-### Why Use Dala?
-
-- **AI-Powered Development** - Get intelligent code suggestions and automated component generation
-- **Instant Preview** - See your changes live in real-time sandbox environments
-- **Zero Setup** - No local environment configuration needed
-- **Collaborative** - Build and share projects with your team
-- **Deployment Ready** - One-click deployment to production
+- 🌐 **Multilingual Support**: Real-time trilingual interface supporting English (`en`), Amharic (`am`), and Sidaamu Afoo (`sid`).
+- 📱 **QR & Customer Ordering**:
+  - Browse dishes categorized with dynamic subcategories.
+  - Interactive dish modal with options and variations (price deltas computed from database).
+  - Dine-in and Takeaway checkout modes.
+  - Cash, Telebirr, and Bank Transfer payment support with receipt screenshot upload.
+  - Order status tracking with database-generated order numbers (`CT-YYYYMMDD-NNNNN`).
+- 🔐 **Secure Admin Portal**:
+  - Protected dashboard authenticated via Supabase Auth and verified against the `admin_users` table (`is_active = true`).
+  - Secure password updates and policy enforcement.
+  - Live kitchen orders management with status transitions (`pending`, `confirmed`, `completed`, `rejected`).
+  - Private payment receipt verification using short-lived signed URLs.
+- 🥘 **Menu Management**:
+  - Add, edit, delete, and toggle availability of food items and variations.
+  - Dual image support: upload from computer to public `food-images` bucket or enter an image URL with live preview.
+- 🗄️ **Supabase Database Architecture**:
+  - Single source of truth for categories, subcategories, dishes, variations, orders, and audit history.
+  - Strict Row Level Security (RLS) policies.
 
 ---
 
-Built with ❤️ by the Dala team to help developers build faster and smarter.
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling & UI**: Tailwind CSS, Lucide Icons, Framer Motion, shadcn/ui
+- **Backend & Auth**: Supabase (PostgreSQL, Supabase Auth, Supabase Storage)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- Node.js (v18+)
+- npm or bun
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Environment Configuration
+Copy `.env.example` to `.env` and fill in your Supabase project credentials:
+```bash
+cp .env.example .env
+```
+Edit `.env`:
+```env
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+### 4. Database Setup
+Run the SQL migration script `supabase_setup.sql` in the **Supabase SQL Editor** to:
+- Create the storage buckets (`food-images` and `payment-proofs`) and their access policies.
+- Create the `submit_order` atomic stored procedure.
+- Provision seed categories, dishes, and initial administrator permissions.
+
+### 5. Start Development Server
+```bash
+npm run dev
+```
+
+### 6. Build for Production
+```bash
+npm run build
+```
+
+---
+
+## 📄 License
+Private repository for CHEF TEKETEL.
